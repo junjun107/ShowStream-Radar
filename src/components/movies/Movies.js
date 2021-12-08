@@ -1,13 +1,22 @@
+import { useContext, useEffect } from 'react';
 import MovieItem from './MovieItem';
 import Spinner from '../layout/Spinner';
 
-const Movies = ({ fetchedMovies, loading }) => {
-  if (loading) {
+import MovieContext from '../../context/movie/movieContext';
+
+const Movies = () => {
+  const movieContext = useContext(MovieContext);
+
+  useEffect(() => {
+    movieContext.popularMovies();
+  }, []);
+
+  if (movieContext.loading) {
     return <Spinner />;
   } else {
     return (
       <div style={movieStyle}>
-        {fetchedMovies.map((movie) => (
+        {movieContext.fetchedMovies.map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
         ))}
       </div>

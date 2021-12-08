@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Image, Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
+import MovieContext from '../../context/movie/movieContext';
 
-const MovieDetails = ({
-  movieDetails,
-  getMovieDetails,
-  getMovieCast,
-  movieCast,
-  loading,
-}) => {
+const MovieDetails = () => {
+  const movieContext = useContext(MovieContext);
+  // const { getMovieDetails } = movieContext;
+
   const { id } = useParams();
 
   useEffect(() => {
     console.log('useEffect ran');
-    getMovieDetails(id);
-    getMovieCast(id);
+    movieContext.getMovieDetails(id);
+    movieContext.getMovieCasts(id);
   }, []);
+
   return (
     <div>
       <section className='midContainer'>
@@ -24,22 +23,24 @@ const MovieDetails = ({
           <Image
             src={
               'https://image.tmdb.org/t/p/original/' +
-              movieDetails.backdrop_path
+              movieContext.movieDetails.backdrop_path
             }
             fluid
             alt='movie_picture'
           />
-          <p className='voteAverage'>Ratings - {movieDetails.vote_average}</p>
+          <p className='voteAverage'>
+            Ratings {movieContext.movieDetails.vote_average}
+          </p>
         </div>
 
         <div className='detailRight'>
-          <h1>{movieDetails.original_title}</h1>
-          <h3>{movieDetails.tagline}</h3>
-          <p>Release_Date: {movieDetails.release_date}</p>
+          <h1>{movieContext.movieDetails.original_title}</h1>
+          <h3>{movieContext.movieDetails.tagline}</h3>
+          <p>Release_Date: {movieContext.movieDetails.release_date}</p>
           <p>
             Genres:{` `}
-            {movieDetails.genres &&
-              movieDetails.genres.map((genre) => (
+            {movieContext.movieDetails.genres &&
+              movieContext.movieDetails.genres.map((genre) => (
                 <Badge bg='secondary' key={genre.id}>
                   {genre.name}
                 </Badge>
@@ -48,10 +49,10 @@ const MovieDetails = ({
           </p>
           <p>
             <br />
-            {movieDetails.overview}
+            {movieContext.movieDetails.overview}
           </p>
           <p>
-            {movieCast.map((cast) => (
+            {movieContext.movieCasts.map((cast) => (
               <Cast cast={cast} key={cast.cast_id} />
             ))}
           </p>

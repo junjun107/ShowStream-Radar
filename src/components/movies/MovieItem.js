@@ -16,7 +16,7 @@ const MovieItem = ({ movie }) => {
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>
-            Ratings - {''}
+            Ratings {''}
             <Badge pill bg='primary'>
               <span
                 className='glyphicon glyphicon-star'

@@ -1,7 +1,7 @@
-import { Reducer } from 'react';
+import { useReducer } from 'react';
 import axios from 'axios';
 import MovieContext from './movieContext';
-import movieReducer from './movieReducer';
+import MovieReducer from './movieReducer';
 import {
   GET_MOVIES,
   SET_LOADING,
@@ -13,28 +13,85 @@ import {
 } from '../types';
 
 const MovieState = (props) => {
-  const initialStates = {
+  const initialState = {
     fetchedMovies: [],
     movieDetails: {},
-    movieCast: [],
+    movieCasts: [],
     loading: false,
     alert: null,
   };
+
+  const [state, dispatch] = useReducer(MovieReducer, initialState);
+
+  //Set Loaing
+  const setLoading = () => {
+    dispatch({
+      type: SET_LOADING,
+    });
+  };
+  // get popular movies
+  const popularMovies = async () => {
+    setLoading();
+    const res = await axios.get(
+      'https://api.themoviedb.org/3/movie/popular?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US&page=1'
+    );
+    dispatch({
+      type: GET_MOVIES,
+      payload: res.data.results,
+    });
+  };
+  // Search Movie with keyword
+  const searchMovie = async (query) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=6c00af7daea767f0080deeb6bd1f556d&query=${query}&page=1`
+    );
+    dispatch({
+      type: SEARCH_MOVIES,
+      payload: res.data.results,
+    });
+  };
+  //Get Single Movie Details
+  const getMovieDetails = async (id) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US`
+    );
+    //console.log(res.data);
+    dispatch({ type: GET_MOVIEDETAILS, payload: res.data });
+  };
+
+  //Get Movie Cast
+  const getMovieCasts = async (id) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US`
+    );
+    const castMembers = res.data.cast;
+    const topFiveCasts = castMembers.slice(0, 5);
+    console.log(topFiveCasts);
+    dispatch({
+      type: GET_MOVIECASTS,
+      payload: topFiveCasts,
+    });
+  };
+
+  return (
+    <MovieContext.Provider
+      value={{
+        fetchedMovies: state.fetchedMovies,
+        movieDetails: state.movieDetails,
+        movieCasts: state.movieCasts,
+        loading: state.loading,
+        alert: state.alert,
+        popularMovies,
+        searchMovie,
+        getMovieDetails,
+        getMovieCasts,
+      }}
+    >
+      {props.children}
+    </MovieContext.Provider>
+  );
 };
-
-const [state, dispatch] = useReducer(movieReducer, initialState);
-
-return (
-  <MovieContext.Provider
-    value={{
-      fetchedMovies: state.fetchedMovies,
-      movieDetails: state.movieDetails,
-      movieCast: state.movieCast,
-      loading: state.loading,
-      alert: state.alert,
-    }}
-  >
-    {props.children}
-  </MovieContext.Provider>
-);
 export default MovieState;

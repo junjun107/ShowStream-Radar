@@ -1,5 +1,8 @@
-import React from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import MovieContext from '../../context/movie/movieContext';
+import AlertContext from '../../context/alert/alertContext';
+
 import {
   Container,
   Navbar,
@@ -11,6 +14,27 @@ import {
 } from 'react-bootstrap';
 
 const Header = () => {
+  const movieContext = useContext(MovieContext);
+  const alertContext = useContext(AlertContext);
+  const { searchMovie } = movieContext;
+  const { setAlert } = alertContext;
+
+  const [query, setQuery] = useState('');
+
+  const onChangeHandler = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    // console.log(query);
+    if (query === '') {
+      setAlert('Search query cannot be empty', 'danger');
+    } else {
+      searchMovie(query);
+      setQuery('');
+    }
+  };
   return (
     <div>
       <Navbar bg='dark' variant={'dark'} expand='lg'>
@@ -36,14 +60,19 @@ const Header = () => {
               </NavDropdown> */}
             </Nav>
 
-            <Form className='d-flex'>
-              <FormControl
-                type='search'
+            <Form className='d-flex' onSubmit={onSubmitHandler}>
+              <input
+                type='text'
+                name='query'
                 placeholder='Search...'
-                className='me-2'
-                aria-label='Search'
+                value={query}
+                onChange={onChangeHandler}
               />
-              <Button variant='outline-light'>Search</Button>
+              <input
+                className='btn btn-outline-secondary'
+                type='submit'
+                value='Search'
+              />
             </Form>
           </Navbar.Collapse>
         </Container>
