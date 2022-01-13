@@ -29,26 +29,38 @@ const MovieState = (props) => {
       type: SET_LOADING,
     });
   };
-  // get popular movies
+
+  // get popular movies p1 & p2
   const popularMovies = async () => {
     setLoading();
-    const res = await axios.get(
+    const resultOne = await axios.get(
       'https://api.themoviedb.org/3/movie/popular?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US&page=1'
     );
+    const resultTwo = await axios.get(
+      'https://api.themoviedb.org/3/movie/popular?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US&page=2'
+    );
+    const res = resultOne.data.results.concat(resultTwo.data.results);
+    // console.log(res);
     dispatch({
       type: GET_MOVIES,
-      payload: res.data.results,
+      payload: res,
     });
   };
+
   // Search Movie with keyword
   const searchMovie = async (query) => {
     setLoading();
-    const res = await axios.get(
+    const resultOne = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=6c00af7daea767f0080deeb6bd1f556d&query=${query}&page=1`
     );
+    const resultTwo = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?api_key=6c00af7daea767f0080deeb6bd1f556d&query=${query}&page=2`
+    );
+    const res = resultOne.data.results.concat(resultTwo.data.results);
+    // console.log(res.data);
     dispatch({
       type: SEARCH_MOVIES,
-      payload: res.data.results,
+      payload: res,
     });
   };
   //Get Single Movie Details
@@ -57,7 +69,7 @@ const MovieState = (props) => {
     const res = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US`
     );
-    //console.log(res.data);
+    // console.log(res.data);
     dispatch({ type: GET_MOVIEDETAILS, payload: res.data });
   };
 
@@ -68,7 +80,7 @@ const MovieState = (props) => {
       `https://api.themoviedb.org/3/movie/${id}/credits?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US`
     );
     const castMembers = res.data.cast;
-    const topFiveCasts = castMembers.slice(0, 5);
+    const topFiveCasts = castMembers.slice(0, 6);
     console.log(topFiveCasts);
     dispatch({
       type: GET_MOVIECASTS,

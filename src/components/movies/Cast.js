@@ -1,17 +1,21 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
 
-const Cast = ({ profile_path, name }) => {
+const Cast = ({ castItem }) => {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img
-        variant='top'
-        src={'https://image.tmdb.org/t/p/w500/' + profile_path}
+    <div className='card text-center border-0 px-0 '>
+      <img
+        style={{ width: '100px', height: '150px' }}
+        src={'https://image.tmdb.org/t/p/w500/' + castItem.profile_path}
+        className='card-img-top rounded-3 mx-auto mt-3'
+        alt='...'
       />
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-      </Card.Body>
-    </Card>
+      <div className='card-body'>
+        <h6 className='card-text my-1'>{castItem.name}</h6>
+        <p className='card-text'>
+          <small className='text-muted'>{castItem.character}</small>
+        </p>
+      </div>
+    </div>
   );
 };
 

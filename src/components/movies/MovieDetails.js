@@ -3,62 +3,94 @@ import { Image, Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
 import MovieContext from '../../context/movie/movieContext';
+import './MovieDetails.css';
 
 const MovieDetails = () => {
   const movieContext = useContext(MovieContext);
-  // const { getMovieDetails } = movieContext;
+  const { getMovieDetails, getMovieCasts, movieDetails, movieCasts } =
+    movieContext;
+  const {
+    backdrop_path,
+    original_title,
+    tagline,
+    vote_average,
+    genres,
+    release_date,
+    overview,
+    poster_path,
+  } = movieDetails;
 
   const { id } = useParams();
-
   useEffect(() => {
     console.log('useEffect ran');
-    movieContext.getMovieDetails(id);
-    movieContext.getMovieCasts(id);
+    getMovieDetails(id);
+    getMovieCasts(id);
   }, []);
 
+  const movieBackdropUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
+  const moviePosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
   return (
-    <div>
-      <section className='midContainer'>
-        <div className='detailLeft'>
-          <Image
-            src={
-              'https://image.tmdb.org/t/p/original/' +
-              movieContext.movieDetails.backdrop_path
-            }
-            fluid
-            alt='movie_picture'
-          />
-          <p className='voteAverage'>
-            Ratings {movieContext.movieDetails.vote_average}
-          </p>
-        </div>
+    <section>
+      <div
+        className='container-lg my-3 moviePosterContainer'
+        style={{
+          backgroundImage: `url('${movieBackdropUrl}')`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+      >
+        <div className='row my-5 g-0 align-items-center  justify-content-around'>
+          <div className='detailLeft col-lg-4 '>
+            <img
+              src={moviePosterUrl}
+              className='rounded mx-auto d-block py-5'
+              alt='movie_picture'
+              style={{ width: '300px' }}
+            />
+          </div>
 
-        <div className='detailRight'>
-          <h1>{movieContext.movieDetails.original_title}</h1>
-          <h3>{movieContext.movieDetails.tagline}</h3>
-          <p>Release_Date: {movieContext.movieDetails.release_date}</p>
-          <p>
-            Genres:{` `}
-            {movieContext.movieDetails.genres &&
-              movieContext.movieDetails.genres.map((genre) => (
-                <Badge bg='secondary' key={genre.id}>
-                  {genre.name}
-                </Badge>
-              ))}
-            {/* genre.name).join(', ')} */}
-          </p>
-          <p>
-            <br />
-            {movieContext.movieDetails.overview}
-          </p>
-          <p>
-            {movieContext.movieCasts.map((cast) => (
-              <Cast cast={cast} key={cast.cast_id} />
-            ))}
-          </p>
+          <div className='detailRight col-lg-6 text-light'>
+            <h2 className='fw-bold'>
+              {original_title}
+              {/* <span className='fw-normal h5 ps-2'>
+                ({movieContext.movieDetails.release_date.slice(0, -6)})
+              </span> */}
+            </h2>
+
+            <h4 className='fst-italic fw-light'>{tagline}</h4>
+            <p className='voteAverage'>Score: {vote_average}</p>
+            <p>Release Date: {release_date}</p>
+
+            <p>
+              Genres:{` `}
+              {genres &&
+                genres.map((genre) => (
+                  <Badge pill bg='info' key={genre.id} className='mx-1'>
+                    {genre.name}
+                  </Badge>
+                ))}
+            </p>
+            <p>
+              <br />
+              <h3 className='fw-bold'>Overview:</h3>
+              <p className='lh-sm'>{overview}</p>
+            </p>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+
+      {/* cast list */}
+      <div className='container-lg'>
+        <h3 className='my-5'>Top cast</h3>
+        <div className='row my-5 g-0 align-items-center justify-content-around'>
+          {movieCasts.map((castItem) => (
+            <div className='col-sm-6 col-md-4 col-lg-2 '>
+              <Cast castItem={castItem} key={id} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

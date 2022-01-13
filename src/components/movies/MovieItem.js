@@ -1,32 +1,29 @@
 import React from 'react';
-import { Button, Card, Badge } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 
 const MovieItem = ({ movie }) => {
   return (
-    <div>
-      <Card style={{ width: '15rem' }}>
-        <Link to={`/movie/${movie.id}`}>
-          <Card.Img
-            variant='top'
-            src={'https://image.tmdb.org/t/p/original/' + movie.poster_path}
-          />
-        </Link>
+    <div className='card bg-light h-100 border-0'>
+      <Link to={`/movie/${movie.id}`}>
+        <img
+          className='card-img-top'
+          width={'300px'}
+          variant='top'
+          src={'https://image.tmdb.org/t/p/original/' + movie.poster_path}
+        />
+      </Link>
 
-        <Card.Body>
-          <Card.Title>{movie.title}</Card.Title>
-          <Card.Text>
-            Ratings {''}
-            <Badge pill bg='primary'>
-              <span
-                className='glyphicon glyphicon-star'
-                aria-hidden='true'
-              ></span>
-              {movie.vote_average}
-            </Badge>
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <div className='card-body text-center'>
+        <h5 className='card-title fw-normal'>{movie.title}</h5>
+        <div className='card-text text-muted'>
+          Ratings {''}
+          <span className='badge rounded-pill bg-primary'>
+            <i class='glyphicon glyphicon-star'></i>
+            {movie.vote_average}
+          </span>
+        </div>
+      </div>
     </div>
   );
 };
