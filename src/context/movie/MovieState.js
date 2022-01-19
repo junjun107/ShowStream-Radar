@@ -12,6 +12,7 @@ import {
   REMOVE_ALERT,
 } from '../types';
 
+//initial state
 const MovieState = (props) => {
   const initialState = {
     fetchedMovies: [],
@@ -34,12 +35,13 @@ const MovieState = (props) => {
   const popularMovies = async () => {
     setLoading();
     const resultOne = await axios.get(
-      'https://api.themoviedb.org/3/movie/popular?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US&page=1'
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
     );
     const resultTwo = await axios.get(
-      'https://api.themoviedb.org/3/movie/popular?api_key=6c00af7daea767f0080deeb6bd1f556d&language=en-US&page=2'
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=2`
     );
     const res = resultOne.data.results.concat(resultTwo.data.results);
+    // const res = resultOne.data.results;
     // console.log(res);
     dispatch({
       type: GET_MOVIES,
@@ -63,7 +65,7 @@ const MovieState = (props) => {
       payload: res,
     });
   };
-  //Get Single Movie Details
+  //Get a Movie Details
   const getMovieDetails = async (id) => {
     setLoading();
     const res = await axios.get(

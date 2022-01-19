@@ -1,0 +1,7 @@
+.card {
+  transition: transform 450ms;
+}
+.card:hover {
+  transform: scale(1.08);
+  opacity: 1;
+}

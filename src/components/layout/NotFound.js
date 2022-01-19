@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import scarecrow from './scarecrow.png';
 import styled from 'styled-components';
-import { Button } from 'react-bootstrap';
 
 const Wrapper = styled.div`
   width: 100%;

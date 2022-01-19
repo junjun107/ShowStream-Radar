@@ -5,3 +5,7 @@ export const GET_MOVIEDETAILS = 'GET_MOVIEDETAILES';
 export const GET_MOVIECASTS = 'GET_MOVIECASTS';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+export const GET_SHOWS = 'GET_SHOWS';
+export const GET_SHOWDETAILS = 'GET_SHOWDETAILS';
+export const GET_SHOWCASTS = 'GET_SHOWCASTS';

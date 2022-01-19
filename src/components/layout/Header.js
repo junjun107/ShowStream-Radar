@@ -50,9 +50,9 @@ const Header = () => {
         {/* navbar links  */}
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-            <li class='nav-item dropdown ms-3'>
+            <li className='nav-item dropdown ms-3'>
               <a
-                class='nav-link dropdown-toggle'
+                className='nav-link dropdown-toggle'
                 href='#'
                 id='navbarDropdown'
                 role='button'
@@ -61,23 +61,23 @@ const Header = () => {
               >
                 Movies
               </a>
-              <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+              <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
                 <li>
-                  <a class='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='/movies'>
                     Popular
                   </a>
                 </li>
                 <li>
-                  <a class='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='#'>
                     Now Playing
                   </a>
                 </li>
               </ul>
             </li>
 
-            <li class='nav-item dropdown ms-3 d-md-inline'>
+            <li className='nav-item dropdown ms-3 d-md-inline'>
               <a
-                class='nav-link dropdown-toggle'
+                className='nav-link dropdown-toggle'
                 href='#'
                 id='navbarDropdown'
                 role='button'
@@ -86,14 +86,14 @@ const Header = () => {
               >
                 Shows
               </a>
-              <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+              <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
                 <li>
-                  <a class='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='/shows'>
                     Popular
                   </a>
                 </li>
                 <li>
-                  <a class='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='#'>
                     Top Rrated
                   </a>
                 </li>

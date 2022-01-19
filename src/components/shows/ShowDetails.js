@@ -2,39 +2,45 @@ import React, { useEffect, useContext } from 'react';
 import { Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
-import MovieContext from '../../context/movie/movieContext';
-import './MovieDetails.css';
+import ShowContext from '../../context/show/showContext';
 
-const MovieDetails = () => {
-  const movieContext = useContext(MovieContext);
-  const { getMovieDetails, getMovieCasts, movieDetails, movieCasts } =
-    movieContext;
+const ShowDetails = () => {
+  const showContext = useContext(ShowContext);
+
+  const { showDetails, getShowDetails, getShowCasts, showCasts } = showContext;
+
   const {
     backdrop_path,
-    original_title,
+    name,
     tagline,
     vote_average,
     genres,
     release_date,
     overview,
     poster_path,
-  } = movieDetails;
+  } = showDetails;
 
   const { id } = useParams();
+
   useEffect(() => {
-    // console.log('useEffect ran');
-    getMovieDetails(id);
-    getMovieCasts(id);
+    console.log('useEffect ran');
+    getShowDetails(id);
+    getShowCasts(id);
   }, []);
 
-  const movieBackdropUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
-  const moviePosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+  const showBackdropUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
+  const showPosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+
   return (
+    // <section>
+    //   <div>{console.log(showDetails.name)}</div>
+    // </section>
     <section>
+      <div>{console.log(showDetails.name)}</div>
       <div
         className='container-lg my-3 moviePosterContainer'
         style={{
-          backgroundImage: `url('${movieBackdropUrl}')`,
+          backgroundImage: `url('${showBackdropUrl}')`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
         }}
@@ -42,16 +48,16 @@ const MovieDetails = () => {
         <div className='row my-5 g-0 align-items-center  justify-content-around'>
           <div className='detailLeft col-lg-4 '>
             <img
-              src={moviePosterUrl}
+              src={showPosterUrl}
               className='rounded mx-auto d-block py-5'
-              alt='movie_picture'
+              alt='poster'
               style={{ width: '300px' }}
             />
           </div>
 
           <div className='detailRight col-lg-6 text-light'>
             <h2 className='fw-bold'>
-              {original_title}
+              {name}
               {/* <span className='fw-normal h5 ps-2'>
                 ({movieContext.movieDetails.release_date.slice(0, -6)})
               </span> */}
@@ -70,22 +76,22 @@ const MovieDetails = () => {
                   </Badge>
                 ))}
             </p>
-            <p>
+            <div>
               <br />
               <h3 className='fw-bold'>Overview:</h3>
               <p className='lh-sm'>{overview}</p>
-            </p>
+            </div>
           </div>
         </div>
       </div>
 
       {/* cast list */}
       <div className='container-lg'>
-        <h3 className='my-5'>Top cast</h3>
-        <div className='row my-5 g-0 align-items-center justify-content-around'>
-          {movieCasts.map((castItem) => (
-            <div className='col-sm-6 col-md-4 col-lg-2 '>
-              <Cast castItem={castItem} key={id} />
+        <h3 className='my-3'>Top cast</h3>
+        <div className='row my-3 g-0 align-items-center'>
+          {showCasts.map((castItem) => (
+            <div className='col-sm-6 col-md-4 col-lg-2' key={castItem.id}>
+              <Cast castItem={castItem} />
             </div>
           ))}
         </div>
@@ -94,4 +100,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default ShowDetails;

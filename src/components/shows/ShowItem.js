@@ -1,27 +1,27 @@
-import './MovieItem.css';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-const MovieItem = ({ movie }) => {
+const ShowItem = ({ show }) => {
   return (
     <div className='card bg-light h-100 border-0'>
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/show/${show.id}`}>
         <img
           className='card-img-top'
           width={'300px'}
           variant='top'
-          src={'https://image.tmdb.org/t/p/original/' + movie.poster_path}
+          src={'https://image.tmdb.org/t/p/original/' + show.poster_path}
           alt='poster'
         />
       </Link>
 
       <div className='card-body text-center'>
-        <h5 className='card-title fw-normal'>{movie.title}</h5>
+        <h5 className='card-title fw-normal'>{show.name}</h5>
         <div className='card-text text-muted'>
           Ratings {''}
           <span className='badge rounded-pill bg-primary'>
             <i class='glyphicon glyphicon-star'></i>
-            {movie.vote_average}
+            {show.vote_average}
           </span>
         </div>
       </div>
@@ -29,4 +29,4 @@ const MovieItem = ({ movie }) => {
   );
 };
 
-export default MovieItem;
+export default ShowItem;
