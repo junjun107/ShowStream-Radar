@@ -14,7 +14,7 @@ const Shows = () => {
   return (
     <div className='container-lg my-2'>
       <div className='text-start'>
-        <h2>Popular Shows</h2>
+        <h2>Shows</h2>
       </div>
 
       <div className='row g-4 justify-content-start'>

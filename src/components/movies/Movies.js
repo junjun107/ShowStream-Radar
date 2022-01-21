@@ -16,7 +16,7 @@ const Movies = () => {
     return (
       <div className='container-lg my-2'>
         <div class='text-start pb-3'>
-          <h2>Popular Movies</h2>
+          <h2>Movies</h2>
         </div>
         <div className='row g-4 justify-content-start'>
           {movieContext.fetchedMovies.map((movie) => (

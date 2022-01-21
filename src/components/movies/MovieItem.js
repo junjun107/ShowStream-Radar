@@ -1,16 +1,19 @@
 import './MovieItem.css';
 
 import { Link } from 'react-router-dom';
+import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
 
 const MovieItem = ({ movie }) => {
+  const { poster_path } = movie;
+  const posterAPI = 'https://image.tmdb.org/t/p/original/';
   return (
-    <div className='card bg-light h-100 border-0'>
+    <div className='card poster-card bg-light h-100 border-0 '>
       <Link to={`/movie/${movie.id}`}>
         <img
-          className='card-img-top'
+          className='card-img-top py-2'
           width={'300px'}
           variant='top'
-          src={'https://image.tmdb.org/t/p/original/' + movie.poster_path}
+          src={poster_path !== null ? posterAPI + poster_path : ImageNotFound}
           alt='poster'
         />
       </Link>

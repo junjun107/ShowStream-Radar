@@ -3,6 +3,7 @@ import { Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
 import MovieContext from '../../context/movie/movieContext';
+import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
 import './MovieDetails.css';
 
 const MovieDetails = () => {
@@ -44,7 +45,7 @@ const MovieDetails = () => {
             <img
               src={moviePosterUrl}
               className='rounded mx-auto d-block py-5'
-              alt='movie_picture'
+              alt=''
               style={{ width: '300px' }}
             />
           </div>
@@ -81,7 +82,7 @@ const MovieDetails = () => {
 
       {/* cast list */}
       <div className='container-lg'>
-        <h3 className='my-5'>Top cast</h3>
+        <h3 className='my-5'>{movieCasts.length < 1 ? '' : 'Top cast'}</h3>
         <div className='row my-5 g-0 align-items-center justify-content-around'>
           {movieCasts.map((castItem) => (
             <div className='col-sm-6 col-md-4 col-lg-2 '>

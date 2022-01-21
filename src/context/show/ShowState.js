@@ -7,6 +7,7 @@ import {
   GET_SHOWDETAILS,
   GET_SHOWCASTS,
   SET_LOADING,
+  SEARCH_SHOWS,
   SET_ALERT,
   REMOVE_ALERT,
 } from '../types';
@@ -65,6 +66,16 @@ const ShowState = (props) => {
     // console.log(res.data.cast);
     dispatch({ type: GET_SHOWCASTS, payload: res.data.cast });
   };
+
+  //search tv show
+  const searchShows = async (query) => {
+    setLoading();
+    const res = await axios.get(`
+    https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&query=${query}&include_adult=false&page=1
+    `);
+    console.log(res.data.results);
+    dispatch({ type: SEARCH_SHOWS, payload: res.data.results });
+  };
   return (
     <ShowContext.Provider
       value={{
@@ -76,6 +87,7 @@ const ShowState = (props) => {
         getPopularShows,
         getShowDetails,
         getShowCasts,
+        searchShows,
       }}
     >
       {props.children}

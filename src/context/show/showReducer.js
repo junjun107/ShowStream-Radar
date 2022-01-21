@@ -3,8 +3,7 @@ import {
   GET_SHOWDETAILS,
   GET_SHOWCASTS,
   SET_LOADING,
-  SET_ALERT,
-  REMOVE_ALERT,
+  SEARCH_SHOWS,
 } from '../types';
 
 export default (state, action) => {
@@ -17,6 +16,8 @@ export default (state, action) => {
       return { ...state, showDetails: action.payload, loading: false };
     case GET_SHOWCASTS:
       return { ...state, showCasts: action.payload, loading: false };
+    case SEARCH_SHOWS:
+      return { ...state, fetchedShows: action.payload, loading: false };
     default:
       return state;
   }

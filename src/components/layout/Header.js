@@ -1,11 +1,15 @@
 import { useContext, useState } from 'react';
 import MovieContext from '../../context/movie/movieContext';
+import ShowContext from '../../context/show/showContext';
 import AlertContext from '../../context/alert/alertContext';
 
 const Header = () => {
   const movieContext = useContext(MovieContext);
+  const showContext = useContext(ShowContext);
   const alertContext = useContext(AlertContext);
+
   const { searchMovie } = movieContext;
+  const { searchShows } = showContext;
   const { setAlert } = alertContext;
 
   const [query, setQuery] = useState('');
@@ -21,6 +25,7 @@ const Header = () => {
       setAlert('Search query cannot be empty', 'danger');
     } else {
       searchMovie(query);
+      searchShows(query);
       setQuery('');
     }
   };
@@ -30,7 +35,7 @@ const Header = () => {
         <a className='navbar-brand ms-2' href='/'>
           <span className='text-info fw-bold'>
             <i className='bi bi-film mx-2' />
-            Moive App
+            Moive DB App
           </span>
         </a>
 
@@ -49,55 +54,16 @@ const Header = () => {
 
         {/* navbar links  */}
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-            <li className='nav-item dropdown ms-3'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='#'
-                id='navbarDropdown'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
+          <ul className='navbar-nav ms-4 me-auto mb-2 mb-lg-0'>
+            <li className='nav-item mx-2'>
+              <a className='nav-link active' aria-current='page' href='/movies'>
                 Movies
               </a>
-              <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
-                <li>
-                  <a className='dropdown-item' href='/movies'>
-                    Popular
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Now Playing
-                  </a>
-                </li>
-              </ul>
             </li>
-
-            <li className='nav-item dropdown ms-3 d-md-inline'>
-              <a
-                className='nav-link dropdown-toggle'
-                href='#'
-                id='navbarDropdown'
-                role='button'
-                data-bs-toggle='dropdown'
-                aria-expanded='false'
-              >
+            <li className='nav-item'>
+              <a className='nav-link active' aria-current='page' href='/shows'>
                 Shows
               </a>
-              <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
-                <li>
-                  <a className='dropdown-item' href='/shows'>
-                    Popular
-                  </a>
-                </li>
-                <li>
-                  <a className='dropdown-item' href='#'>
-                    Top Rrated
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
           {/* Search box */}

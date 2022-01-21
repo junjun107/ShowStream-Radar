@@ -4,8 +4,6 @@ import {
   SEARCH_MOVIES,
   GET_MOVIEDETAILS,
   GET_MOVIECASTS,
-  SET_ALERT,
-  REMOVE_ALERT,
 } from '../types';
 
 export default (state, action) => {

@@ -3,6 +3,8 @@ import { Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
 import ShowContext from '../../context/show/showContext';
+import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
+import './ShowDetails.css';
 
 const ShowDetails = () => {
   const showContext = useContext(ShowContext);
@@ -50,7 +52,7 @@ const ShowDetails = () => {
             <img
               src={showPosterUrl}
               className='rounded mx-auto d-block py-5'
-              alt='poster'
+              alt=''
               style={{ width: '300px' }}
             />
           </div>
@@ -86,11 +88,11 @@ const ShowDetails = () => {
       </div>
 
       {/* cast list */}
-      <div className='container-lg'>
-        <h3 className='my-3'>Top cast</h3>
-        <div className='row my-3 g-0 align-items-center'>
+      <div className='row'>
+        <h3 className='my-3'>{showCasts.length < 1 ? '' : 'Top cast'}</h3>
+        <div className='row_posters my-3 g-0 align-items-center'>
           {showCasts.map((castItem) => (
-            <div className='col-sm-6 col-md-4 col-lg-2' key={castItem.id}>
+            <div key={castItem.id}>
               <Cast castItem={castItem} />
             </div>
           ))}

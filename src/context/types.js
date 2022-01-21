@@ -1,11 +1,13 @@
 export const SET_LOADING = 'SET_LOADING';
 export const GET_MOVIES = 'GET_MOVIES';
-export const SEARCH_MOVIES = 'SEARCH_MOVIES';
+
 export const GET_MOVIEDETAILS = 'GET_MOVIEDETAILES';
 export const GET_MOVIECASTS = 'GET_MOVIECASTS';
+export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
 
 export const GET_SHOWS = 'GET_SHOWS';
 export const GET_SHOWDETAILS = 'GET_SHOWDETAILS';
 export const GET_SHOWCASTS = 'GET_SHOWCASTS';
+export const SEARCH_SHOWS = 'SEARCH_SHOWS';

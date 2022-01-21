@@ -1,8 +1,10 @@
 import React from 'react';
-
+import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
 import { Link } from 'react-router-dom';
 
 const ShowItem = ({ show }) => {
+  const { poster_path } = show;
+  const posterAPI = 'https://image.tmdb.org/t/p/original/';
   return (
     <div className='card bg-light h-100 border-0'>
       <Link to={`/show/${show.id}`}>
@@ -10,7 +12,7 @@ const ShowItem = ({ show }) => {
           className='card-img-top'
           width={'300px'}
           variant='top'
-          src={'https://image.tmdb.org/t/p/original/' + show.poster_path}
+          src={poster_path !== null ? posterAPI + poster_path : ImageNotFound}
           alt='poster'
         />
       </Link>
