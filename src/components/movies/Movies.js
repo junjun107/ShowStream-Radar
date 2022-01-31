@@ -15,19 +15,26 @@ const Movies = () => {
   } else {
     return (
       <div className='container-lg my-2'>
-        <div class='text-start pb-3'>
-          <h2>Movies</h2>
+        <div className='text-start pb-3'>
+          <h2 className='font-weight-bold '>Movies</h2>
         </div>
         <div className='row g-4 justify-content-start'>
-          {movieContext.fetchedMovies.map((movie) => (
-            <div
-              key={movie.id}
-              id='cardItem'
-              className='col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2'
-            >
-              <MovieItem movie={movie} />
-            </div>
-          ))}
+          {movieContext.fetchedMovies.length === 0 ? (
+            <h4 className='text-muted px-2'>
+              {' '}
+              <i className='bi bi-emoji-frown px-3'></i>No results found
+            </h4>
+          ) : (
+            movieContext.fetchedMovies.map((movie) => (
+              <div
+                key={movie.id}
+                id='cardItem'
+                className='col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2'
+              >
+                <MovieItem movie={movie} />
+              </div>
+            ))
+          )}
         </div>
       </div>
     );

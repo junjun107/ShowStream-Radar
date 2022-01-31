@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MovieContext from '../../context/movie/movieContext';
 import ShowContext from '../../context/show/showContext';
 import AlertContext from '../../context/alert/alertContext';
@@ -7,6 +8,8 @@ const Header = () => {
   const movieContext = useContext(MovieContext);
   const showContext = useContext(ShowContext);
   const alertContext = useContext(AlertContext);
+
+  const navigate = useNavigate();
 
   const { searchMovie } = movieContext;
   const { searchShows } = showContext;
@@ -20,13 +23,15 @@ const Header = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // console.log(query);
+
+    // // console.log(query);
     if (query === '') {
       setAlert('Search query cannot be empty', 'danger');
     } else {
       searchMovie(query);
       searchShows(query);
       setQuery('');
+      navigate('/');
     }
   };
   return (
@@ -35,7 +40,7 @@ const Header = () => {
         <a className='navbar-brand ms-2' href='/'>
           <span className='text-info fw-bold'>
             <i className='bi bi-film mx-2' />
-            Moive DB App
+            Moive DB
           </span>
         </a>
 
@@ -56,16 +61,25 @@ const Header = () => {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav ms-4 me-auto mb-2 mb-lg-0'>
             <li className='nav-item mx-2'>
-              <a className='nav-link active' aria-current='page' href='/movies'>
+              <a
+                className='nav-link active text-secondary font-weight-bold'
+                aria-current='page'
+                href='/movies'
+              >
                 Movies
               </a>
             </li>
-            <li className='nav-item'>
-              <a className='nav-link active' aria-current='page' href='/shows'>
+            <li className='nav-item mx-2'>
+              <a
+                className='nav-link active text-secondary font-weight-bold'
+                aria-current='page'
+                href='/shows'
+              >
                 Shows
               </a>
             </li>
           </ul>
+
           {/* Search box */}
           <form onSubmit={onSubmitHandler}>
             <div className='input-group ms-3'>

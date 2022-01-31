@@ -1,8 +1,10 @@
 import React from 'react';
 import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
+import './Cast.css';
 
 const Cast = ({ castItem }) => {
   const { profile_path } = castItem;
+
   return (
     <div className='card text-center border-0 px-1 '>
       <img

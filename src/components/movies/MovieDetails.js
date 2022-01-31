@@ -8,7 +8,7 @@ import './MovieDetails.css';
 
 const MovieDetails = () => {
   const movieContext = useContext(MovieContext);
-  const { getMovieDetails, getMovieCasts, movieDetails, movieCasts } =
+  const { getMovieDetails, movieDetails, getMovieCasts, movieCasts } =
     movieContext;
   const {
     backdrop_path,
@@ -21,7 +21,9 @@ const MovieDetails = () => {
     poster_path,
   } = movieDetails;
 
+  //grab id from url
   const { id } = useParams();
+
   useEffect(() => {
     // console.log('useEffect ran');
     getMovieDetails(id);
@@ -30,8 +32,12 @@ const MovieDetails = () => {
 
   const movieBackdropUrl = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
   const moviePosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+
+  // get year from release_year string
+  const release_year = release_date?.split('-')[0];
+
   return (
-    <section>
+    <sectio n>
       <div
         className='container-lg my-3 moviePosterContainer'
         style={{
@@ -53,9 +59,7 @@ const MovieDetails = () => {
           <div className='detailRight col-lg-6 text-light'>
             <h2 className='fw-bold'>
               {original_title}
-              {/* <span className='fw-normal h5 ps-2'>
-                ({movieContext.movieDetails.release_date.slice(0, -6)})
-              </span> */}
+              <span className='fw-normal h5 px-3'>{release_year}</span>
             </h2>
 
             <h4 className='fst-italic fw-light'>{tagline}</h4>
@@ -91,7 +95,7 @@ const MovieDetails = () => {
           ))}
         </div>
       </div>
-    </section>
+    </sectio>
   );
 };
 

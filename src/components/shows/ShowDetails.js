@@ -3,7 +3,6 @@ import { Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
 import ShowContext from '../../context/show/showContext';
-import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
 import './ShowDetails.css';
 
 const ShowDetails = () => {
@@ -17,7 +16,7 @@ const ShowDetails = () => {
     tagline,
     vote_average,
     genres,
-    release_date,
+    first_air_date,
     overview,
     poster_path,
   } = showDetails;
@@ -34,11 +33,8 @@ const ShowDetails = () => {
   const showPosterUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
 
   return (
-    // <section>
-    //   <div>{console.log(showDetails.name)}</div>
-    // </section>
     <section>
-      <div>{console.log(showDetails.name)}</div>
+      {/* Show Details */}
       <div
         className='container-lg my-3 moviePosterContainer'
         style={{
@@ -60,14 +56,15 @@ const ShowDetails = () => {
           <div className='detailRight col-lg-6 text-light'>
             <h2 className='fw-bold'>
               {name}
-              {/* <span className='fw-normal h5 ps-2'>
-                ({movieContext.movieDetails.release_date.slice(0, -6)})
-              </span> */}
+              <span className='fw-normal h5 px-3'>
+                <span>(</span>
+                {first_air_date.substr(0, 4)} <span>)</span>
+              </span>
             </h2>
 
             <h4 className='fst-italic fw-light'>{tagline}</h4>
             <p className='voteAverage'>Score: {vote_average}</p>
-            <p>Release Date: {release_date}</p>
+            <p>First Release Date: {first_air_date}</p>
 
             <p>
               Genres:{` `}
@@ -87,10 +84,12 @@ const ShowDetails = () => {
         </div>
       </div>
 
+      {/* show seasons info            */}
+      <div className='container lg'></div>
       {/* cast list */}
-      <div className='row'>
+      <div className='container-lg container-cast'>
         <h3 className='my-3'>{showCasts.length < 1 ? '' : 'Top cast'}</h3>
-        <div className='row_posters my-3 g-0 align-items-center'>
+        <div className='row_posters my-3 g-0 align-items-center align-items-stretch'>
           {showCasts.map((castItem) => (
             <div key={castItem.id}>
               <Cast castItem={castItem} />
