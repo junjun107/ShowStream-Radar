@@ -31,7 +31,7 @@ const Header = () => {
       searchMovie(query);
       searchShows(query);
       setQuery('');
-      navigate('/');
+      navigate(`/search/${query}`);
     }
   };
   return (

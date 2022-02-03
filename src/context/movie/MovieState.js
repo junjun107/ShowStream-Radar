@@ -15,7 +15,8 @@ import {
 //initial state
 const MovieState = (props) => {
   const initialState = {
-    fetchedMovies: [],
+    popularMovies: [],
+    movieSearchResults: [],
     movieDetails: {},
     movieCasts: [],
     loading: false,
@@ -32,7 +33,7 @@ const MovieState = (props) => {
   };
 
   // get popular movies p1 & p2
-  const popularMovies = async () => {
+  const getPopularMovies = async () => {
     setLoading();
     const resultOne = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
@@ -59,7 +60,7 @@ const MovieState = (props) => {
       `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&query=${query}&page=2`
     );
     const res = resultOne.data.results.concat(resultTwo.data.results);
-    // console.log(res.data);
+    console.log(res);
     dispatch({
       type: SEARCH_MOVIES,
       payload: res,
@@ -93,12 +94,13 @@ const MovieState = (props) => {
   return (
     <MovieContext.Provider
       value={{
-        fetchedMovies: state.fetchedMovies,
+        popularMovies: state.popularMovies,
+        movieSearchResults: state.movieSearchResults,
         movieDetails: state.movieDetails,
         movieCasts: state.movieCasts,
         loading: state.loading,
         alert: state.alert,
-        popularMovies,
+        getPopularMovies,
         searchMovie,
         getMovieDetails,
         getMovieCasts,

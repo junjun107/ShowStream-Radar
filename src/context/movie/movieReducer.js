@@ -11,9 +11,9 @@ export default (state, action) => {
     case SET_LOADING:
       return { ...state, loading: true };
     case GET_MOVIES:
-      return { ...state, fetchedMovies: action.payload, loading: false };
+      return { ...state, popularMovies: action.payload, loading: false };
     case SEARCH_MOVIES:
-      return { ...state, fetchedMovies: action.payload, loading: false };
+      return { ...state, movieSearchResults: action.payload, loading: false };
     case GET_MOVIEDETAILS:
       return { ...state, movieDetails: action.payload, loading: false };
     case GET_MOVIECASTS:

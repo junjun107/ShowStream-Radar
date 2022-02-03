@@ -1,9 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { Badge } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
 import MovieContext from '../../context/movie/movieContext';
-import ImageNotFound from '../layout/images/image-not-available-300x300.jpg';
+
 import './MovieDetails.css';
 
 const MovieDetails = () => {
@@ -70,9 +69,9 @@ const MovieDetails = () => {
               Genres:{` `}
               {genres &&
                 genres.map((genre) => (
-                  <Badge pill bg='info' key={genre.id} className='mx-1'>
+                  <span className='badge pill bg-info mx-1' key={genre.id}>
                     {genre.name}
-                  </Badge>
+                  </span>
                 ))}
             </p>
             <p>

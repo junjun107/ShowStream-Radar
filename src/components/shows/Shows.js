@@ -16,8 +16,11 @@ const Shows = () => {
   } else {
     return (
       <div className='container-lg my-2'>
-        <div className='text-start pb-3'>
-          <h2>Shows</h2>
+        <div className='text-start py-3'>
+          <h4 className='pt-5 pb-4'>
+            <i className='bi bi-film mx-2 text-info' />
+            <strong>Popular Shows</strong>
+          </h4>
         </div>
 
         <div className='row g-4 justify-content-start'>

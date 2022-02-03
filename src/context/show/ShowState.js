@@ -16,6 +16,7 @@ const ShowState = (props) => {
   //initial state
   const initialState = {
     fetchedShows: [],
+    showSearchResults: [],
     showDetails: {},
     showCasts: [],
     loading: false,
@@ -73,6 +74,7 @@ const ShowState = (props) => {
     const res = await axios.get(`
     https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&query=${query}&include_adult=false&page=1
     `);
+
     console.log(res.data.results);
     dispatch({ type: SEARCH_SHOWS, payload: res.data.results });
   };
@@ -80,6 +82,7 @@ const ShowState = (props) => {
     <ShowContext.Provider
       value={{
         fetchedShows: state.fetchedShows,
+        showSearchResults: state.showSearchResults,
         showDetails: state.showDetails,
         showCasts: state.showCasts,
         loading: state.loading,

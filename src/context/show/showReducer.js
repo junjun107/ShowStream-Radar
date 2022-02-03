@@ -17,7 +17,7 @@ export default (state, action) => {
     case GET_SHOWCASTS:
       return { ...state, showCasts: action.payload, loading: false };
     case SEARCH_SHOWS:
-      return { ...state, fetchedShows: action.payload, loading: false };
+      return { ...state, showSearchResults: action.payload, loading: false };
     default:
       return state;
   }

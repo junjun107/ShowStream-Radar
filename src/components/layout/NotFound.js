@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import scarecrow from './scarecrow.png';
 import styled from 'styled-components';
 
@@ -28,9 +27,9 @@ const Title = styled.h1`
   font-weight: 300;
   font-size: 3.5rem;
 `;
-const LinkWrapper = styled(Link)`
-  text-decoration: none;
-`;
+// const LinkWrapper = styled(Link)`
+//   text-decoration: none;
+// `;
 const Subtitle = styled.h2`
   color: var(--color-primary);
   font-weight: 700;

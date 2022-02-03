@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Badge } from 'react-bootstrap';
+
 import { useParams } from 'react-router-dom';
 import Cast from './Cast';
 import ShowContext from '../../context/show/showContext';
@@ -58,7 +58,7 @@ const ShowDetails = () => {
               {name}
               <span className='fw-normal h5 px-3'>
                 <span>(</span>
-                {first_air_date.substr(0, 4)} <span>)</span>
+                {first_air_date?.substr(0, 4)} <span>)</span>
               </span>
             </h2>
 
@@ -70,9 +70,9 @@ const ShowDetails = () => {
               Genres:{` `}
               {genres &&
                 genres.map((genre) => (
-                  <Badge pill bg='info' key={genre.id} className='mx-1'>
+                  <span className='badge pill bg-info mx-1' key={genre.id}>
                     {genre.name}
-                  </Badge>
+                  </span>
                 ))}
             </p>
             <div>
