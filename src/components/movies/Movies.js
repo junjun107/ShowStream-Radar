@@ -17,9 +17,6 @@ const Movies = () => {
     return (
       <div className='container-lg my-2'>
         <div className='text-start py-3'>
-          {/* <h4 className='pt-5 pb-4'>
-            <strong>Popular Movies</strong>
-          </h4> */}
           <span className='h4'>
             <i className='bi bi-film mx-2 text-info' />
             Popular Movies
