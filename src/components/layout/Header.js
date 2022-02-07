@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import MovieContext from '../../context/movie/movieContext';
 import ShowContext from '../../context/show/showContext';
 import AlertContext from '../../context/alert/alertContext';
@@ -61,22 +61,22 @@ const Header = () => {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav ms-4 me-auto mb-2 mb-lg-0'>
             <li className='nav-item mx-2'>
-              <a
+              <Link
+                to='/movies'
                 className='nav-link active text-secondary font-weight-bold'
                 aria-current='page'
-                href='/movies'
               >
                 Movies
-              </a>
+              </Link>
             </li>
             <li className='nav-item mx-2'>
-              <a
+              <Link
+                to='/shows'
                 className='nav-link active text-secondary font-weight-bold'
                 aria-current='page'
-                href='/shows'
               >
                 Shows
-              </a>
+              </Link>
             </li>
           </ul>
 

@@ -36,7 +36,7 @@ const MovieDetails = () => {
   const release_year = release_date?.split('-')[0];
 
   return (
-    <sectio n>
+    <section>
       <div
         className='container-lg my-3 moviePosterContainer'
         style={{
@@ -94,7 +94,7 @@ const MovieDetails = () => {
           ))}
         </div>
       </div>
-    </sectio>
+    </section>
   );
 };
 
