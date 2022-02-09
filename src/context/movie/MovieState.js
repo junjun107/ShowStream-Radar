@@ -8,8 +8,6 @@ import {
   SEARCH_MOVIES,
   GET_MOVIEDETAILS,
   GET_MOVIECASTS,
-  SET_ALERT,
-  REMOVE_ALERT,
 } from '../types';
 
 //initial state
@@ -25,7 +23,7 @@ const MovieState = (props) => {
 
   const [state, dispatch] = useReducer(MovieReducer, initialState);
 
-  //Set Loaing
+  //Set Loading
   const setLoading = () => {
     dispatch({
       type: SET_LOADING,

@@ -35,12 +35,12 @@ const Header = () => {
     }
   };
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark py-3'>
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark py-2 fixed-top'>
       <div className='container-fluid'>
         <a className='navbar-brand ms-2' href='/'>
           <span className='text-info fw-bold'>
             <i className='bi bi-film mx-2' />
-            Moive DB
+            Movie DB
           </span>
         </a>
 
