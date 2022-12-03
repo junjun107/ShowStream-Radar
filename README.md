@@ -6,6 +6,12 @@ Styled with Bootstrap 5 and Sass
 
 **Link to project:** https://relaxed-jackson-4661d8.netlify.app/
 
+## How to run this app:
+- You will need a TMDB API key https://developers.themoviedb.org/3/getting-started/introduction
+- Clone or donwload the code, install all packages 
+- Include your own TMDB API key in a ``.dot`` file
+- Run start with ``npm start`` 
+
 ## How It's Made:
 
 **Tech used:** JavaScript, Node.js, Express, SCSS, Bootstrap, React, TMDB
