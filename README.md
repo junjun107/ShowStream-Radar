@@ -1,10 +1,13 @@
-
-
 # What's Popular Now Movie DB 
 This project is a React application with functions to search for movies and shows using TMDB API.
 Styled with Bootstrap 5 and Sass
 
+
 **Link to project:** https://relaxed-jackson-4661d8.netlify.app/
+
+<p align="center">
+  <img src="https://res.cloudinary.com/dhhiphscp/image/upload/v1670047180/samples/Portfolio/MovieApp_kgybe6.png" width="350" title="hover text">
+</p>
 
 ## How to run this app:
 - You will need a TMDB API key https://developers.themoviedb.org/3/getting-started/introduction
