@@ -6,7 +6,7 @@ Styled with Bootstrap 5 and Sass
 **Link to project:** https://relaxed-jackson-4661d8.netlify.app/
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dhhiphscp/image/upload/v1670047180/samples/Portfolio/MovieApp_kgybe6.png" width="350" title="hover text">
+  <img src="https://res.cloudinary.com/dhhiphscp/image/upload/v1670700132/portfolio/MovieApp_xvv46t.png" width="450" title="hover text">
 </p>
 
 ## How to run this app:
