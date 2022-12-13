@@ -32,5 +32,5 @@ There are a few things I'd love to upgrade/implement for this porject in the fea
 ## Lessons Learned:
 
 While using the React context API, I learned a few things about useReducer hook. 
-- It's a pure function taht is  used to maniupualte part of the app state.
+- It's a pure function that is  used to maniupualte part of the app state.
 
