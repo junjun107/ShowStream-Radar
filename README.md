@@ -20,8 +20,8 @@ Styled with Bootstrap 5 and Sass
 **Tech used:** JavaScript, Node.js, Express, SCSS, Bootstrap, React, TMDB
 
 The purpose of this project:
-- Have fun how TMDB API works 
-- Understand React context API such as useReducer 
+- Have fun with TMDB API
+- Understand React context API better, such as useReducer.
 
 ## Optimizations
 There are a few things I'd love to upgrade/implement for this porject in the feature.
