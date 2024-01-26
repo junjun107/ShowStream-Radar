@@ -1,4 +1,4 @@
-# What's Popular Now Movie DB 
+# ShowStream Radar
 This project is a React application with functions to search for movies and shows using TMDB API.
 Styled with Bootstrap 5 and Sass
 
