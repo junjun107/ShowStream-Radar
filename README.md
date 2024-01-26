@@ -3,7 +3,7 @@ This project is a React application with functions to search for movies and show
 Styled with Bootstrap 5 and Sass
 
 
-**Link to project:** https://relaxed-jackson-4661d8.netlify.app/
+[Link to project](https://relaxed-jackson-4661d8.netlify.app/)
 
 <p align="center">
   <img src="https://res.cloudinary.com/dhhiphscp/image/upload/v1670700132/portfolio/MovieApp_xvv46t.png" width="450" title="hover text">
